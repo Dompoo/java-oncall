@@ -18,6 +18,20 @@ public class EmergencyWorkers {
 		this.emergencyWorkers = emergencyWorkers;
 	}
 	
+	public boolean hasSameWorkers(EmergencyWorkers other) {
+		for (EmergencyWorker emergencyWorker : emergencyWorkers) {
+			if (!other.hasWorkerName(emergencyWorker.getName())) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean hasWorkerName(String name) {
+		return emergencyWorkers.stream()
+				.anyMatch(emergencyWorker -> emergencyWorker.getName().equals(name));
+	}
+	
 	private static void validate(List<EmergencyWorker> emergencyWorkers) {
 		if (getNoDuplicatedNameSize(emergencyWorkers) != emergencyWorkers.size()) {
 			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
