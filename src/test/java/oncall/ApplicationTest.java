@@ -30,7 +30,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기능_테스트() {
+    void 기본_기능_테스트() {
         assertSimpleTest(() -> {
             run(
                     "4,토",
@@ -68,6 +68,57 @@ class ApplicationTest extends NsTest {
                     "4월 28일 금 조이" + LINE_SEPARATOR,
                     "4월 29일 토 해시" + LINE_SEPARATOR,
                     "4월 30일 일 폴로"
+            );
+        });
+    }
+    
+    @Test
+    void 주말_평일_연속근무_변경_기능_테스트() {
+        assertSimpleTest(() -> {
+            run(
+                    "4,토",
+                    "a,b,c,d,e",
+                    "b,a,c,d,e"
+            );
+            assertThat(output()).contains(
+                    "4월 1일 토 b" + LINE_SEPARATOR,
+                    "4월 2일 일 a" + LINE_SEPARATOR,
+                    "4월 3일 월 b" + LINE_SEPARATOR,
+                    "4월 4일 화 a"
+            );
+        });
+    }
+    
+    @Test
+    void 평일_주말_연속근무_변경_기능_테스트() {
+        assertSimpleTest(() -> {
+            run(
+                    "4,토",
+                    "a,b,c,d,e",
+                    "b,a,c,d,e"
+            );
+            assertThat(output()).contains(
+                    "4월 13일 목 d" + LINE_SEPARATOR,
+                    "4월 14일 금 e" + LINE_SEPARATOR,
+                    "4월 15일 토 b" + LINE_SEPARATOR,
+                    "4월 16일 일 e"
+            );
+        });
+    }
+    
+    @Test
+    void 법정공휴일_연속_근무_변경_기능_테스트() {
+        assertSimpleTest(() -> {
+            run(
+                    "10,월",
+                    "a,b,c,d,e",
+                    "b,a,c,d,e"
+            );
+            assertThat(output()).contains(
+                    "10월 1일 월 a" + LINE_SEPARATOR,
+                    "10월 2일 화 b" + LINE_SEPARATOR,
+                    "10월 3일 수(휴일) c" + LINE_SEPARATOR,
+                    "10월 4일 목 b"
             );
         });
     }

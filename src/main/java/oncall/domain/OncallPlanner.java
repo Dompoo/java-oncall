@@ -35,7 +35,7 @@ public class OncallPlanner {
 	}
 	
 	public OncallPlanResult plan() {
-		//TODO : 연속 근무시 순서 변경 로직 작성 필요
+		//TODO : 코드 최적화 및 10줄 제한 반영
 		List<OncallDayPlan> oncallDayPlans = new ArrayList<>();
 		int weekdayIndex = 0;
 		int holidayIndex = 0;
@@ -46,6 +46,27 @@ public class OncallPlanner {
 			}
 			oncallDayPlans.add(new OncallDayPlan(calendarDay, holidayEmergencyWorkers.getNameOf(holidayIndex++)));
 		}
+		handleShift(oncallDayPlans);
 		return new OncallPlanResult(oncallCalendar.getMonthValue(), oncallDayPlans);
+	}
+	
+	public static void handleShift(List<OncallDayPlan> oncallDayPlans) {
+		String prevEmergencyWorkerName = "";
+		for (int i = 0; i < oncallDayPlans.size(); i++) {
+			String currEmergencyWorkerName = oncallDayPlans.get(i).emergencyWorkerName();
+			if (prevEmergencyWorkerName.equals(currEmergencyWorkerName)) {
+				switchCurrentWorkerAndNextWorker(oncallDayPlans, i);
+			}
+			prevEmergencyWorkerName = oncallDayPlans.get(i).emergencyWorkerName();
+		}
+	}
+	
+	private static void switchCurrentWorkerAndNextWorker(List<OncallDayPlan> oncallDayPlans, int currentIndex) {
+		String currEmergencyWorkerName = oncallDayPlans.get(currentIndex).emergencyWorkerName();
+		String nextEmergencyWorkerName = oncallDayPlans.get(currentIndex + 1).emergencyWorkerName();
+		OncallDayPlan currPlan = oncallDayPlans.remove(currentIndex).emergencyWorkerNameOf(nextEmergencyWorkerName);
+		OncallDayPlan nextPlan = oncallDayPlans.remove(currentIndex).emergencyWorkerNameOf(currEmergencyWorkerName);
+		oncallDayPlans.add(currentIndex, nextPlan);
+		oncallDayPlans.add(currentIndex, currPlan);
 	}
 }

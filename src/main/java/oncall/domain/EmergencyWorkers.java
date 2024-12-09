@@ -2,6 +2,7 @@ package oncall.domain;
 
 import oncall.common.exception.CustomExceptions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +16,16 @@ public class EmergencyWorkers {
 	public EmergencyWorkers(List<EmergencyWorker> emergencyWorkers) {
 		Objects.requireNonNull(emergencyWorkers);
 		validate(emergencyWorkers);
-		this.emergencyWorkers = emergencyWorkers;
+		this.emergencyWorkers = new ArrayList<>(emergencyWorkers);
+	}
+	
+	private static void validate(List<EmergencyWorker> emergencyWorkers) {
+		if (getNoDuplicatedNameSize(emergencyWorkers) != emergencyWorkers.size()) {
+			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
+		}
+		if (MIN_EMERGENCY_WORKER_SIZE > emergencyWorkers.size() || MAX_EMERGENCY_WORKER_SIZE < emergencyWorkers.size()) {
+			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
+		}
 	}
 	
 	public static EmergencyWorkers from(List<String> emergencyWorkerNames) {
@@ -38,15 +48,6 @@ public class EmergencyWorkers {
 	private boolean hasWorkerName(String name) {
 		return emergencyWorkers.stream()
 				.anyMatch(emergencyWorker -> emergencyWorker.getName().equals(name));
-	}
-	
-	private static void validate(List<EmergencyWorker> emergencyWorkers) {
-		if (getNoDuplicatedNameSize(emergencyWorkers) != emergencyWorkers.size()) {
-			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
-		}
-		if (MIN_EMERGENCY_WORKER_SIZE > emergencyWorkers.size() || MAX_EMERGENCY_WORKER_SIZE < emergencyWorkers.size()) {
-			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
-		}
 	}
 	
 	private static long getNoDuplicatedNameSize(List<EmergencyWorker> emergencyWorkers) {
