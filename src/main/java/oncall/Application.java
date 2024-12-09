@@ -14,21 +14,6 @@ import oncall.io.writer.Writer;
 
 public class Application {
     public static void main(String[] args) {
-        Writer writer = new ConsoleWriter();
-        InputHandler inputHandler = new InputHandler(
-                new ConsoleReader(),
-                writer,
-                new InputValidator(),
-                new InputParser()
-        );
-        OutputHandler outputHandler = new OutputHandler(
-                writer,
-                new OutputParser()
-        );
-        new OncallController(
-                inputHandler,
-                outputHandler,
-                new RetryHandler(new ExceptionHandler(writer))
-        ).run();
+        OncallApplicatoin.run();
     }
 }
