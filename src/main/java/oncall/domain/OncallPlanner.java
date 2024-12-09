@@ -29,6 +29,9 @@ public class OncallPlanner {
 		if (!weekdayEmergencyWorkers.hasSameWorkers(holidayEmergencyWorkers)) {
 			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
 		}
+		if (!holidayEmergencyWorkers.hasSameWorkers(weekdayEmergencyWorkers)) {
+			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
+		}
 	}
 	
 	public OncallPlanResult plan() {

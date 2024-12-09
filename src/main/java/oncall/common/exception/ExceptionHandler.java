@@ -4,8 +4,6 @@ import oncall.io.writer.Writer;
 
 public class ExceptionHandler {
 	
-	private static final String EXCEPTION_MESSAGE_PREFIX = "\n[ERROR] ";
-	
 	private final Writer writer;
 	
 	public ExceptionHandler(final Writer writer) {
@@ -13,6 +11,6 @@ public class ExceptionHandler {
 	}
 	
 	public void handleException(final Exception exception) {
-		writer.write(EXCEPTION_MESSAGE_PREFIX + exception.getMessage() + "\n");
+		writer.write("[ERROR] " + exception.getMessage() + "\n");
 	}
 }
