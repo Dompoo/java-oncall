@@ -28,6 +28,6 @@ public enum DayOfWeek {
 	}
 	
 	public DayOfWeek add(int day) {
-		return DayOfWeek.values()[this.ordinal() + day % 7];
+		return DayOfWeek.values()[(this.ordinal() + day - 1) % 7];
 	}
 }
