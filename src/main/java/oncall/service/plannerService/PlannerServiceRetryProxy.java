@@ -1,7 +1,6 @@
 package oncall.service.plannerService;
 
 import oncall.common.RetryHandler;
-import oncall.common.dto.OncallPlanResult;
 import oncall.domain.OncallCalendar;
 import oncall.domain.OncallPlanner;
 

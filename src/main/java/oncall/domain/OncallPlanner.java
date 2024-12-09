@@ -1,9 +1,9 @@
 package oncall.domain;
 
-import oncall.common.exception.CustomExceptions;
+import oncall.common.dto.CalendarDay;
 import oncall.common.dto.OncallDayPlan;
 import oncall.common.dto.OncallPlanResult;
-import oncall.common.dto.CalendarDay;
+import oncall.common.exception.CustomExceptions;
 
 import java.util.ArrayList;
 import java.util.List;

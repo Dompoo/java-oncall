@@ -2,7 +2,6 @@ package oncall;
 
 import oncall.config.*;
 import oncall.config.reader.DefaultReaderConfig;
-import oncall.config.reader.ReaderConfig;
 import oncall.config.writer.DefaultWriterConfig;
 import oncall.config.writer.WriterConfig;
 import oncall.controller.OncallController;

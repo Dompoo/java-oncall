@@ -1,6 +1,5 @@
 package oncall.service.plannerService;
 
-import oncall.common.dto.OncallPlanResult;
 import oncall.domain.EmergencyWorkers;
 import oncall.domain.OncallCalendar;
 import oncall.domain.OncallPlanner;
