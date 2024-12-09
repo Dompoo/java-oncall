@@ -23,11 +23,11 @@ public enum DayOfWeek {
 	}
 	
 	public static boolean isWeekday(int targetDay, DayOfWeek monthStartDayOfWeek) {
-		DayOfWeek dayOfWeek = monthStartDayOfWeek.add(targetDay % 7);
+		DayOfWeek dayOfWeek = monthStartDayOfWeek.add(targetDay);
 		return dayOfWeek != 토 && dayOfWeek != 일;
 	}
 	
 	public DayOfWeek add(int day) {
-		return DayOfWeek.values()[this.ordinal() + day];
+		return DayOfWeek.values()[this.ordinal() + day % 7];
 	}
 }

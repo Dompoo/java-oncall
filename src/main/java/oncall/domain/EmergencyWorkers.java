@@ -47,4 +47,9 @@ public class EmergencyWorkers {
 				.distinct()
 				.count();
 	}
+	
+	public String getNameOf(int index) {
+		EmergencyWorker emergencyWorker = emergencyWorkers.get(index % emergencyWorkers.size());
+		return emergencyWorker.getName();
+	}
 }

@@ -24,7 +24,7 @@ public class OncallCalendar {
 		
 		List<CalendarDay> calendarDays = new ArrayList<>();
 		for (int day = 1; day <= lenghtOfMonth; day++) {
-			calendarDays.add(new CalendarDay(day, isWeekDay(day)));
+			calendarDays.add(new CalendarDay(day, monthStartDayOfWeek.add(day), isWeekDay(day)));
 		}
 		
 		return calendarDays;
@@ -41,5 +41,9 @@ public class OncallCalendar {
 		if (monthValue == 2) return 28;
 		if (monthValue == 4 || monthValue == 6 || monthValue == 9 || monthValue == 11) return 30;
 		return 31;
+	}
+	
+	public int getMonthValue() {
+		return month.getValue();
 	}
 }
