@@ -27,7 +27,7 @@ public enum DayOfWeek {
 		return dayOfWeek != 토 && dayOfWeek != 일;
 	}
 	
-	private DayOfWeek add(int day) {
+	public DayOfWeek add(int day) {
 		return DayOfWeek.values()[this.ordinal() + day];
 	}
 }

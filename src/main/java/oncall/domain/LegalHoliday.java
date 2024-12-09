@@ -23,7 +23,12 @@ public enum LegalHoliday {
 		this.day = day;
 	}
 	
-	public boolean isHolidayOnWeekDay(int month, int day, DayOfWeek monthStartDayOfWeek) {
+	public static boolean isHoliday(int month, int day) {
+		return Arrays.stream(LegalHoliday.values())
+				.anyMatch(legalHoliday -> legalHoliday.month == month && legalHoliday.day == day);
+	}
+	
+	public static boolean isHolidayOnWeekDay(int month, int day, DayOfWeek monthStartDayOfWeek) {
 		Optional<LegalHoliday> holiday = Arrays.stream(LegalHoliday.values())
 				.filter(legalHoliday -> legalHoliday.month == month && legalHoliday.day == day)
 				.findFirst();
