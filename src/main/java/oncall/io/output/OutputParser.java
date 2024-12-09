@@ -18,7 +18,7 @@ public class OutputParser {
 		stringBuilder.append(oncallPlanResult.month()).append("월 ");
 		stringBuilder.append(oncallDayPlan.calendarDay().day()).append("일 ");
 		stringBuilder.append(oncallDayPlan.calendarDay().dayOfWeek().name());
-		if (oncallDayPlan.calendarDay().isLegalHolidayOnWeekday()) {
+		if (oncallDayPlan.calendarDay().isLegalHoliday() && oncallDayPlan.calendarDay().isWeekDay()) {
 			stringBuilder.append("(휴일)");
 		}
 		stringBuilder.append(" ").append(oncallDayPlan.emergencyWorkerName());

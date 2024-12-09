@@ -27,17 +27,11 @@ public class OncallCalendar {
 			calendarDays.add(new CalendarDay(
 					day,
 					monthStartDayOfWeek.add(day),
-					isHoliday(day),
-					LegalHoliday.isLegalHolidayOnWeekday(month.getValue(), day, monthStartDayOfWeek))
+					DayOfWeek.isWeekday(day, monthStartDayOfWeek),
+					LegalHoliday.isLegalHoliday(month.getValue(), day))
 			);
 		}
 		return calendarDays;
-	}
-	
-	private boolean isHoliday(int day) {
-		boolean isHoliday = LegalHoliday.isLegalHoliday(month.getValue(), day);
-		boolean isWeekDay = DayOfWeek.isWeekday(day, monthStartDayOfWeek);
-		return !isWeekDay && isHoliday;
 	}
 	
 	private int calculateLenghtOfMonth() {

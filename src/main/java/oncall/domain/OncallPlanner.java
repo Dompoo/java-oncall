@@ -37,16 +37,12 @@ public class OncallPlanner {
 		int weekdayIndex = 0;
 		int holidayIndex = 0;
 		for (CalendarDay calendarDay : oncallCalendar.getCalendarDays()) {
-			String emergencyWorkerName = getName(weekdayIndex++, holidayIndex++, calendarDay);
-			oncallDayPlans.add(new OncallDayPlan(calendarDay, emergencyWorkerName));
+			if (calendarDay.isWeekDay() && !calendarDay.isLegalHoliday()) {
+				oncallDayPlans.add(new OncallDayPlan(calendarDay, weekdayEmergencyWorkers.getNameOf(weekdayIndex++)));
+				continue;
+			}
+			oncallDayPlans.add(new OncallDayPlan(calendarDay, holidayEmergencyWorkers.getNameOf(holidayIndex++)));
 		}
 		return new OncallPlanResult(oncallCalendar.getMonthValue(), oncallDayPlans);
-	}
-	
-	private String getName(int weekdayIndex, int holidayIndex, CalendarDay calendarDay) {
-		if (calendarDay.isHoliday()) {
-			return holidayEmergencyWorkers.getNameOf(holidayIndex);
-		}
-		return weekdayEmergencyWorkers.getNameOf(weekdayIndex);
 	}
 }
