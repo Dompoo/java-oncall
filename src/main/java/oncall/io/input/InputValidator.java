@@ -1,6 +1,6 @@
 package oncall.io.input;
 
-import oncall.common.CustomExceptions;
+import oncall.common.exception.CustomExceptions;
 
 import java.util.regex.Pattern;
 

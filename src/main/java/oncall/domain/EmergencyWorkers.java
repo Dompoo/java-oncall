@@ -1,6 +1,6 @@
 package oncall.domain;
 
-import oncall.common.CustomExceptions;
+import oncall.common.exception.CustomExceptions;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +16,14 @@ public class EmergencyWorkers {
 		Objects.requireNonNull(emergencyWorkers);
 		validate(emergencyWorkers);
 		this.emergencyWorkers = emergencyWorkers;
+	}
+	
+	public static EmergencyWorkers from(List<String> emergencyWorkerNames) {
+		List<EmergencyWorker> workers = emergencyWorkerNames.stream()
+				.map(EmergencyWorker::new)
+				.toList();
+		
+		return new EmergencyWorkers(workers);
 	}
 	
 	public boolean hasSameWorkers(EmergencyWorkers other) {

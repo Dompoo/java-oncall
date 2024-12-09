@@ -1,6 +1,6 @@
 package oncall.domain;
 
-import oncall.common.CustomExceptions;
+import oncall.common.exception.CustomExceptions;
 import oncall.common.dto.OncallDayPlan;
 import oncall.common.dto.OncallPlanResult;
 import oncall.domain.vo.CalendarDay;
