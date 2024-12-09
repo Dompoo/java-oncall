@@ -2,15 +2,17 @@ package oncall.io.input;
 
 import oncall.common.exception.CustomExceptions;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputValidator {
 	
-	private static final Pattern MONTH_AND_DAY_OF_WEEK_FORMAT = Pattern.compile("[1-9][12]?,.");
+	private static final List<String> VALID_MONTHS = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
 	private static final Pattern EMERGENCY_WORKER_NAMES_FORMAT = Pattern.compile("(.+,)*.+");
 	
 	public void validateMonthAndDayOfWeek(String input) {
-		if (!MONTH_AND_DAY_OF_WEEK_FORMAT.matcher(input).matches()) {
+		String[] inputs = input.split(",");
+		if (!VALID_MONTHS.contains(inputs[0])) {
 			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
 		}
 	}
