@@ -1,5 +1,7 @@
 package oncall.domain;
 
+import oncall.common.CustomExceptions;
+
 import java.util.Objects;
 
 public class EmergencyWorker {
@@ -16,7 +18,11 @@ public class EmergencyWorker {
 	
 	private static void validate(String name) {
 		if (name.length() > MAX_NAME_LENGTH) {
-			throw CustomExceptions.OVER_MAX_EMERGENCY_WORKER_NAME.get(MAX_NAME_LENGTH);
+			throw CustomExceptions.ILLEGAL_ARGUMENT.get();
 		}
+	}
+	
+	public String getName() {
+		return name;
 	}
 }
