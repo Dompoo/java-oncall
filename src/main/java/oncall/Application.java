@@ -5,9 +5,3 @@ public class Application {
         // TODO: 프로그램 구현
     }
 }
-
-public record class mainDto {
-    private int id;
-    private String name;
-    private int age;
-}
