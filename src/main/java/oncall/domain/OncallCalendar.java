@@ -21,19 +21,22 @@ public class OncallCalendar {
 	
 	public List<CalendarDay> getCalendarDays() {
 		int lenghtOfMonth = calculateLenghtOfMonth();
-		
 		List<CalendarDay> calendarDays = new ArrayList<>();
 		for (int day = 1; day <= lenghtOfMonth; day++) {
-			calendarDays.add(new CalendarDay(day, monthStartDayOfWeek.add(day), isWeekDay(day)));
+			calendarDays.add(new CalendarDay(
+					day,
+					monthStartDayOfWeek.add(day),
+					!isHoliday(day),
+					LegalHoliday.isLegalHolidayOnWeekday(month.getValue(), day, monthStartDayOfWeek))
+			);
 		}
-		
 		return calendarDays;
 	}
 	
-	private boolean isWeekDay(int day) {
-		boolean isHoliday = LegalHoliday.isHoliday(month.getValue(), day);
+	private boolean isHoliday(int day) {
+		boolean isHoliday = LegalHoliday.isLegalHoliday(month.getValue(), day);
 		boolean isWeekDay = DayOfWeek.isWeekday(day, monthStartDayOfWeek);
-		return isWeekDay && !isHoliday;
+		return !isWeekDay && isHoliday;
 	}
 	
 	private int calculateLenghtOfMonth() {

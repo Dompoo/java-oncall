@@ -1,4 +1,4 @@
-package oncall.io;
+package oncall.io.input;
 
 import oncall.common.dto.MonthAndDayOfWeek;
 import oncall.io.reader.Reader;

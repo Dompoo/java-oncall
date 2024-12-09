@@ -1,7 +1,7 @@
 package oncall.domain;
 
 import oncall.common.CustomExceptions;
-import oncall.common.dto.OncallPlanDay;
+import oncall.common.dto.OncallDayPlan;
 import oncall.common.dto.OncallPlanResult;
 import oncall.domain.vo.CalendarDay;
 
@@ -33,14 +33,14 @@ public class OncallPlanner {
 	
 	public OncallPlanResult plan() {
 		//TODO : 연속 근무시 순서 변경 로직 작성 필요
-		List<OncallPlanDay> oncallPlanDays = new ArrayList<>();
+		List<OncallDayPlan> oncallDayPlans = new ArrayList<>();
 		int weekdayIndex = 0;
 		int holidayIndex = 0;
 		for (CalendarDay calendarDay : oncallCalendar.getCalendarDays()) {
 			String emergencyWorkerName = getName(weekdayIndex++, holidayIndex++, calendarDay);
-			oncallPlanDays.add(new OncallPlanDay(calendarDay, emergencyWorkerName));
+			oncallDayPlans.add(new OncallDayPlan(calendarDay, emergencyWorkerName));
 		}
-		return new OncallPlanResult(oncallCalendar.getMonthValue(), oncallPlanDays);
+		return new OncallPlanResult(oncallCalendar.getMonthValue(), oncallDayPlans);
 	}
 	
 	private String getName(int weekdayIndex, int holidayIndex, CalendarDay calendarDay) {

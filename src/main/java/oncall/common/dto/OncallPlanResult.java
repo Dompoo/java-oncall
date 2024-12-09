@@ -4,6 +4,6 @@ import java.util.List;
 
 public record OncallPlanResult(
 		int month,
-		List<OncallPlanDay> oncallPlanDays
+		List<OncallDayPlan> oncallDayPlans
 ) {
 }

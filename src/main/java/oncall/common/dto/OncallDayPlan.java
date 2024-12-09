@@ -1,9 +1,8 @@
 package oncall.common.dto;
 
-import oncall.domain.DayOfWeek;
 import oncall.domain.vo.CalendarDay;
 
-public record OncallPlanDay(
+public record OncallDayPlan(
 		CalendarDay calendarDay,
 		String emergencyWorkerName
 ) {

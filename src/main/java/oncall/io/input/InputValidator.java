@@ -1,7 +1,6 @@
-package oncall.io;
+package oncall.io.input;
 
 import oncall.common.CustomExceptions;
-import oncall.common.dto.MonthAndDayOfWeek;
 
 import java.util.regex.Pattern;
 
