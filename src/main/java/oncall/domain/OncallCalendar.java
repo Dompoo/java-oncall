@@ -1,7 +1,6 @@
 package oncall.domain;
 
-import oncall.common.dto.MonthAndDayOfWeek;
-import oncall.domain.vo.CalendarDay;
+import oncall.common.dto.CalendarDay;
 
 import java.time.Month;
 import java.util.ArrayList;

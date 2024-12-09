@@ -1,4 +1,4 @@
-package oncall.domain.vo;
+package oncall.common.dto;
 
 import oncall.domain.DayOfWeek;
 

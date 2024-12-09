@@ -3,7 +3,7 @@ package oncall.domain;
 import oncall.common.exception.CustomExceptions;
 import oncall.common.dto.OncallDayPlan;
 import oncall.common.dto.OncallPlanResult;
-import oncall.domain.vo.CalendarDay;
+import oncall.common.dto.CalendarDay;
 
 import java.util.ArrayList;
 import java.util.List;
