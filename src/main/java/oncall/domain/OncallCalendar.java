@@ -27,7 +27,7 @@ public class OncallCalendar {
 			calendarDays.add(new CalendarDay(
 					day,
 					monthStartDayOfWeek.add(day),
-					!isHoliday(day),
+					isHoliday(day),
 					LegalHoliday.isLegalHolidayOnWeekday(month.getValue(), day, monthStartDayOfWeek))
 			);
 		}
